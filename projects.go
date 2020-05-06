@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
 	"os/exec"
@@ -38,7 +37,6 @@ func getProjects() []project {
 			prPath := matches[1][1]
 			prName := filepath.Base(prPath)
 			edVersion := getEditorVersion(prPath)
-			fmt.Println(project{name: prName, path: prPath, editorVersion: edVersion})
 			prs = append(prs, project{name: prName, path: prPath, editorVersion: edVersion})
 		}
 	}
@@ -46,6 +44,7 @@ func getProjects() []project {
 	return prs
 }
 
+// Get editor version to open project with
 func getEditorVersion(projectPath string) string {
 	file, err := os.Open(projectPath + "/ProjectSettings/ProjectVersion.txt")
 	if err != nil {
